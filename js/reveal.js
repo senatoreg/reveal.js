@@ -1346,10 +1346,12 @@ export default function( revealElement, options ) {
 
 		progress.update();
 		controls.update();
-		notes.update();
-		backgrounds.update();
-		backgrounds.updateParallax();
-		slideNumber.update();
+		if( slideChanged ) {
+			notes.update();
+			backgrounds.update();
+			backgrounds.updateParallax();
+			slideNumber.update();
+		}
 		fragments.update();
 
 		// Update the URL hash
