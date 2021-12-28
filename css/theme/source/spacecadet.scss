@@ -14,6 +14,7 @@
 // Include theme-specific fonts
 @import url(./fonts/league-gothic/league-gothic.css);
 @import url(https://fonts.googleapis.com/css?family=PT%20Sans:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu%20Mono:400,700,400italic,700italic);
 
 /**
  * Solarized colors by Ethan Schoonover
@@ -46,6 +47,7 @@ $lightSalmon: #ff9b71;
 
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'PT Sans', sans-serif;
+$codeFont: 'Ubuntu Mono', monospace;
 $mainColor: $turquoise;
 $headingColor: $cream;
 $headingTextShadow: none;
