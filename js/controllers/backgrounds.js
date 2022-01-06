@@ -187,7 +187,7 @@ export default class Backgrounds {
 		if( data.backgroundRepeat ) contentElement.style.backgroundRepeat = data.backgroundRepeat;
 		if( data.backgroundPosition ) contentElement.style.backgroundPosition = data.backgroundPosition;
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
-		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { createElement.classList.add(c); });
+		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
 
 		// If this slide has a background color, we add a class that
 		// signals if it is light or dark. If the slide has no background
