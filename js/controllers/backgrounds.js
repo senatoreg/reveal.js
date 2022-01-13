@@ -193,7 +193,7 @@ export default class Backgrounds {
 			if (s.length > 0) {
 				let p = s.split(':');
 				let v = p[1].split('!');
-				contentElement.style.setProperty(p[0], v[0], v[1]);
+				contentElement.style.setProperty(p[0].trim(), v[0].trim(), v[1].trim());
 			}
 		});
 
