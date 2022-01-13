@@ -190,7 +190,7 @@ export default class Backgrounds {
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
 		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
 		if( data.backgroundStyle ) data.backgroundStyle.forEach((s, i) => {
-			if (p.length > 0) {
+			if (s.length > 0) {
 				let p = s.split(':');
 				let v = p[1].split('!');
 				contentElement.style.setProperty(p[0], v[0], v[1]);
