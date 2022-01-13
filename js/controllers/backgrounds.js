@@ -189,7 +189,13 @@ export default class Backgrounds {
 		if( data.backgroundPosition ) contentElement.style.backgroundPosition = data.backgroundPosition;
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
 		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
-		if( data.backgroundStyle ) data.backgroundStyle.forEach((s, i) => { let p = s.split(':'); let v = p[1].split('!'); contentElement.style.setProperty(p[0], v[0], v[1]); });
+		if( data.backgroundStyle ) data.backgroundStyle.forEach((s, i) => {
+			if (p.length > 0) {
+				let p = s.split(':');
+				let v = p[1].split('!');
+				contentElement.style.setProperty(p[0], v[0], v[1]);
+			}
+		});
 
 		// If this slide has a background color, we add a class that
 		// signals if it is light or dark. If the slide has no background
