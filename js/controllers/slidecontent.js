@@ -107,7 +107,7 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let images = backgroundImage.split( ',' ).map( background => { return document.createElement( 'img' ).src = background; });
+						let images = backgroundImage.split( ',' ).map( background => { let image = document.createElement( 'img' ); image.src = background; return image; });
 
 						images.forEach( image => { backgroundContent.appendChild( image ) });
 					}
