@@ -143,10 +143,6 @@ export default class Backgrounds {
 		element.removeAttribute( 'data-background-transition' );
 		element.style.backgroundColor = '';
 
-		contentElement.style.backgroundSize = '';
-		contentElement.style.backgroundRepeat = '';
-		contentElement.style.backgroundPosition = '';
-		contentElement.style.backgroundImage = '';
 		contentElement.style.opacity = '';
 		contentElement.innerHTML = '';
 
@@ -177,16 +173,13 @@ export default class Backgrounds {
 		}
 
 		// Additional and optional background properties
-		if( data.backgroundSize ) element.setAttribute( 'data-background-size', data.backgroundSize );
 		if( data.backgroundColor ) element.style.backgroundColor = data.backgroundColor;
 		if( data.backgroundTransition ) element.setAttribute( 'data-background-transition', data.backgroundTransition );
 
 		if( dataPreload ) element.setAttribute( 'data-preload', '' );
 
 		// Background image options are set on the content wrapper
-		if( data.backgroundSize ) contentElement.style.backgroundSize = data.backgroundSize;
-		if( data.backgroundRepeat ) contentElement.style.backgroundRepeat = data.backgroundRepeat;
-		if( data.backgroundPosition ) contentElement.style.backgroundPosition = data.backgroundPosition;
+		if( data.backgroundPosition ) contentElement.style.objectPosition = data.backgroundPosition;
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
 		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
 		if( data.backgroundStyle ) data.backgroundStyle.forEach((s, i) => {

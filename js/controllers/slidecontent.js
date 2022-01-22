@@ -95,6 +95,7 @@ export default class SlideContent {
 				background.setAttribute( 'data-loaded', 'true' );
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
+					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
@@ -103,11 +104,14 @@ export default class SlideContent {
 				if( backgroundImage ) {
 					// base64
 					if(  /^data:/.test( backgroundImage.trim() ) ) {
-						backgroundContent.style.backgroundImage = `url(${backgroundImage.trim()})`;
+						let image = document.createElement( 'img' );
+						image.src = backgroundImage.trim();
+						if ( backgroundSize ) image.style.objectFit = backgroundSize;
+						backgroundContent.appendChild( image );
 					}
 					// URL(s)
 					else {
-						let images = backgroundImage.split( ',' ).map( background => { let image = document.createElement( 'img' ); image.src = background; return image; });
+						let images = backgroundImage.split( ',' ).map( background => { let image = document.createElement( 'img' ); image.src = background; if ( backgroundSize ) image.style.objectFit = backgroundSize; return image; });
 
 						images.forEach( image => { backgroundContent.appendChild( image ) });
 					}
