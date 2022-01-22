@@ -1147,8 +1147,9 @@ $controlsArrowAngleActive: 36deg;
 	top: 0;
 	left: 0;
 	object-fit: cover;
+	object-position: inherit;
 }
-	.reveal .slide-background[data-background-size="contain"] video {
+	.reveal .slide-background[data-background-size="contain"] img {
 		object-fit: contain;
 	}
 
