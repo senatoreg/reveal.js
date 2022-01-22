@@ -107,9 +107,9 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						backgroundContent.style.backgroundImage = backgroundImage.split( ',' ).map( background => {
-							return `url(${encodeURI(background.trim())})`;
-						}).join( ',' );
+						let images = backgroundImage.split( ',' ).map( background => { return document.createElement( 'img' ).src = background; });
+
+						images.forEach( image => { backgroundContent.appendChild( image ) });
 					}
 				}
 				// Videos
