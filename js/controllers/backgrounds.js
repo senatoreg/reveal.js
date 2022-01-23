@@ -179,6 +179,7 @@ export default class Backgrounds {
 		if( dataPreload ) element.setAttribute( 'data-preload', '' );
 
 		// Background image options are set on the content wrapper
+		if( data.backgroundSize ) element.setAttribute( 'data-background-size', data.backgroundSize );
 		if( data.backgroundPosition ) contentElement.style.objectPosition = data.backgroundPosition;
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
 		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
