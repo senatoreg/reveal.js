@@ -95,6 +95,7 @@ export default class SlideContent {
 				background.setAttribute( 'data-loaded', 'true' );
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
+					backgroundImageClasses = slide.getAttribute( 'data-background-image-layer-classes' ).split(':'),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
@@ -113,6 +114,9 @@ export default class SlideContent {
 					else {
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
+							backgroundImageClasses[i].split(',').forEach( (e, i) => {
+								image.classList.add(e);
+							});
 							image.classList.add( 'layer' + i );
 							image.src = background.trim();
 							if ( backgroundSize )
