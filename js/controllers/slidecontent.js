@@ -111,7 +111,14 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let images = backgroundImage.split( ',' ).map( background => { let image = document.createElement( 'img' ); image.src = background; if ( backgroundSize ) image.style.objectFit = backgroundSize; return image; });
+						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
+							let image = document.createElement( 'img' );
+							image.classList.add( 'layer' + i );
+							image.src = background.trim();
+							if ( backgroundSize )
+								image.style.objectFit = backgroundSize;
+							return image;
+						});
 
 						images.forEach( image => { backgroundContent.appendChild( image ) });
 					}
