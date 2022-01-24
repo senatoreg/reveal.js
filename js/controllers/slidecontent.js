@@ -116,7 +116,7 @@ export default class SlideContent {
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
 							if ( imageClasses )
-								backgroundImageClasses[i].split(',').forEach( ( e, i ) => {
+								imageClasses[i].split(',').forEach( ( e, i ) => {
 									if ( e ) image.classList.add( e );
 								});
 							image.classList.add( 'layer' + i );
