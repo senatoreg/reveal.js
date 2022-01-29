@@ -211,6 +211,10 @@ html.reveal-full-page {
 	z-index: 1;
 }
 
+.reveal div.backgrounds div.slide-background div.slide-background-content iframe {
+	border: 0;
+}
+
 /** Prevents layering issues in certain browser/transition combinations */
 .reveal a {
 	position: relative;
