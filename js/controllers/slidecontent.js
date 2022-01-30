@@ -95,7 +95,7 @@ export default class SlideContent {
 				background.setAttribute( 'data-loaded', 'true' );
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
-					backgroundImageClasses = slide.getAttribute( 'data-background-image-classes' ),
+					backgroundImageClasses = slide.getAttribute( 'data-background-image-class' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
