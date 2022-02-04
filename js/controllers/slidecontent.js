@@ -95,11 +95,12 @@ export default class SlideContent {
 				background.setAttribute( 'data-loaded', 'true' );
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
-					backgroundImageClasses = slide.getAttribute( 'data-background-image-class' ),
+					backgroundImageClass = slide.getAttribute( 'data-background-image-class' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
+					backgroundVideoClass = slide.getAttribute( 'data-background-image-class' ),
 
 				// Images
 				if( backgroundImage ) {
@@ -112,11 +113,11 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let imageClasses = backgroundImageClasses ? backgroundImageClasses.split(':') : undefined;
+						let imageClass = backgroundImageClass ? backgroundImageClass.split(':') : undefined;
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
-							if ( imageClasses )
-								imageClasses[i].split(',').forEach( ( e, i ) => {
+							if ( imageClass && imageClass[i] )
+								imageClass[i].split(',').forEach( ( e, i ) => {
 									if ( e ) image.classList.add( e );
 								});
 							image.classList.add( 'layer' + i );
@@ -132,6 +133,10 @@ export default class SlideContent {
 				// Videos
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
 					let video = document.createElement( 'video' );
+					if ( backgroundVideoClass )
+						backgroundVideoClass.split(',').forEach( cls => {
+							video.classList.add(backgroundVideoClass);
+						});
 
 					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
