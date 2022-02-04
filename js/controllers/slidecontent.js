@@ -98,9 +98,9 @@ export default class SlideContent {
 					backgroundImageClass = slide.getAttribute( 'data-background-image-class' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
+					backgroundVideoClass = slide.getAttribute( 'data-background-image-class' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
-					backgroundVideoClass = slide.getAttribute( 'data-background-image-class' ),
 
 				// Images
 				if( backgroundImage ) {
