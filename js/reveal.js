@@ -983,7 +983,7 @@ export default function( revealElement, options ) {
 
 			// Full Presentation size
 			presentationFullWidth: presentationWidth || dom.wrapper.offsetWidth,
-			presentationFullHeight: presentationHeight || dom.wrapper.offsetHeight
+			presentationFullHeight: presentationHeight || dom.wrapper.offsetHeight,
 
 			// Presentation size
 			presentationWidth: presentationWidth || dom.wrapper.offsetWidth,
