@@ -838,6 +838,9 @@ export default function( revealElement, options ) {
 				scale = Math.max( scale, config.minScale );
 				scale = Math.min( scale, config.maxScale );
 
+				fullScale = Math.min( size.presentationFullWidth / size.width, size.presentationFullHeight / size.height );
+				fullScaleRatio = fullScale / scale;
+
 				// Don't apply any scaling styles if scale is 1
 				if( scale === 1 ) {
 					dom.slides.style.zoom = '';
@@ -894,6 +897,9 @@ export default function( revealElement, options ) {
 						}
 						else {
 							slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';
+						}
+						if( slide.hasAttribute( 'data-fullscreen' ) ) {
+							slide.style.transform = 'scale(' + fullScaleRatio + ')';
 						}
 					}
 					else {
@@ -974,6 +980,10 @@ export default function( revealElement, options ) {
 			// Slide size
 			width: config.width,
 			height: config.height,
+
+			// Full Presentation size
+			presentationFullWidth: presentationWidth || dom.wrapper.offsetWidth,
+			presentationFullHeight: presentationHeight || dom.wrapper.offsetHeight
 
 			// Presentation size
 			presentationWidth: presentationWidth || dom.wrapper.offsetWidth,
