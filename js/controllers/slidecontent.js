@@ -140,7 +140,7 @@ export default class SlideContent {
 					let video = document.createElement( 'video' );
 					if ( backgroundVideoClass )
 						backgroundVideoClass.split(' ').forEach( cls => {
-							video.classList.add(backgroundVideoClass);
+							video.classList.add( cls );
 						});
 					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 )
 							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex.trim() );
@@ -174,6 +174,22 @@ export default class SlideContent {
 						}
 					} );
 
+					video.addEventListener('play', function(event) {
+						let v = event.target;
+						v.classList.add('playing');
+					});
+					video.addEventListener('playing', function(event) {
+						let v = event.target;
+						v.classList.add('playing');
+					});
+					video.addEventListener('pause', function(event) {
+						let v = event.target;
+						v.classList.remove('playing');
+					});
+					video.addEventListener('waiting', function(event) {
+						let v = event.target;
+						v.classList.remove('playing');
+					});
 					backgroundContent.appendChild( video );
 				}
 				// Iframes
