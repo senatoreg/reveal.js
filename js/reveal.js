@@ -1932,7 +1932,7 @@ export default function( revealElement, options ) {
 		}
 
 		if( !slide && currentSlide ) {
-			let currentBackground = getSlideBAckground( currentSlide );
+			let currentBackground = getSlideBackground( currentSlide );
 			let hasFragments = currentSlide.querySelectorAll( '.fragment' ).length > 0 || currentBackground.querySelectorAll( '.fragment' ).length > 0;
 			if( hasFragments ) {
 				let currentFragment = currentSlide.querySelector( '.current-fragment[data-fragment-index]' );
