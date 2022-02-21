@@ -74,7 +74,6 @@ export default function( revealElement, options ) {
 		// The current scale of the presentation (see width/height config)
 		scale = 1,
 		fullScale = 1,
-		fullScaleRatio = 1,
 
 		// CSS transform that is currently applied to the slides container,
 		// split into two groups
@@ -840,8 +839,7 @@ export default function( revealElement, options ) {
 				scale = Math.max( scale, config.minScale );
 				scale = Math.min( scale, config.maxScale );
 
-				fullScale = Math.min( size.presentationFullWidth / size.width, size.presentationFullHeight / size.height );
-				fullScaleRatio = fullScale / scale;
+				fullScale = 1 / ( 1 - config.margin );
 
 				// Don't apply any scaling styles if scale is 1
 				if( scale === 1 ) {
@@ -901,7 +899,7 @@ export default function( revealElement, options ) {
 							slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';
 						}
 						if( slide.hasAttribute( 'data-fullscreen' ) ) {
-							slide.style.transform = 'scale(' + fullScaleRatio + ')';
+							slide.style.transform = 'scale(' + fullScale + ')';
 						}
 					}
 					else {
@@ -982,10 +980,6 @@ export default function( revealElement, options ) {
 			// Slide size
 			width: config.width,
 			height: config.height,
-
-			// Full Presentation size
-			presentationFullWidth: presentationWidth || dom.wrapper.offsetWidth,
-			presentationFullHeight: presentationHeight || dom.wrapper.offsetHeight,
 
 			// Presentation size
 			presentationWidth: presentationWidth || dom.wrapper.offsetWidth,
