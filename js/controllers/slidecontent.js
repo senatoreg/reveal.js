@@ -96,9 +96,11 @@ export default class SlideContent {
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
 					backgroundImageClass = slide.getAttribute( 'data-background-image-class' ),
+					backgroundImageFragmentIndex = slide.getAttribute( 'data-background-image-fragment-index' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
-					backgroundVideoClass = slide.getAttribute( 'data-background-image-class' ),
+					backgroundVideoClass = slide.getAttribute( 'data-background-video-class' ),
+					backgroundVideoFragmentIndex = slide.getAttribute( 'data-background-video-fragment-index' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
 
@@ -113,13 +115,16 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let imageClass = backgroundImageClass ? backgroundImageClass.split(':') : undefined;
+						let imageClass = backgroundImageClass ? backgroundImageClass.split(',') : undefined;
+							imageFragmentIndex = backgroundImageFragmentIndex ? backgroundImageFragmentIndex.split(',') : undefined;
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
 							if ( imageClass && imageClass[i] )
-								imageClass[i].split(',').forEach( ( e, i ) => {
-									if ( e ) image.classList.add( e );
+								imageClass[i].split(' ').forEach( ( e, i ) => {
+									if ( e && e.length > 0 ) image.classList.add( e );
 								});
+							if ( imageFragmentIndex && imageFragmentIndex[i].trim().length > 0 )
+								image.setAttribute( 'data-fragment-index', imageFragmentIndex[i].trim() );
 							image.classList.add( 'layer' + i );
 							image.src = background.trim();
 							if ( backgroundSize )
@@ -134,9 +139,11 @@ export default class SlideContent {
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
 					let video = document.createElement( 'video' );
 					if ( backgroundVideoClass )
-						backgroundVideoClass.split(',').forEach( cls => {
+						backgroundVideoClass.split(' ').forEach( cls => {
 							video.classList.add(backgroundVideoClass);
 						});
+					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex[i].trim().length > 0 )
+							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex[i].trim() );
 
 					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
