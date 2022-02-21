@@ -73,6 +73,8 @@ export default function( revealElement, options ) {
 
 		// The current scale of the presentation (see width/height config)
 		scale = 1,
+		fullScale = 1,
+		fullScaleRatio = 1,
 
 		// CSS transform that is currently applied to the slides container,
 		// split into two groups
