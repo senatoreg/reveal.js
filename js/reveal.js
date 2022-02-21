@@ -1596,6 +1596,10 @@ export default function( revealElement, options ) {
 							fragment.classList.add( 'visible' );
 							fragment.classList.remove( 'current-fragment' );
 						} );
+						Util.queryAll( getSlideBackground( element ), '.fragment' ).forEach( fragment => {
+							fragment.classList.add( 'visible' );
+							fragment.classList.remove( 'current-fragment' );
+						} );
 					}
 				}
 				else if( i > index ) {
@@ -1605,6 +1609,9 @@ export default function( revealElement, options ) {
 					if( config.fragments ) {
 						// Hide all fragments in future slides
 						Util.queryAll( element, '.fragment.visible' ).forEach( fragment => {
+							fragment.classList.remove( 'visible', 'current-fragment' );
+						} );
+						Util.queryAll( getSlideBackground( element ), '.fragment.visible' ).forEach( fragment => {
 							fragment.classList.remove( 'visible', 'current-fragment' );
 						} );
 					}
@@ -1856,6 +1863,7 @@ export default function( revealElement, options ) {
 	 * @return {number}
 	 */
 	function getProgress() {
+		let currentBackground = getSlideBackground( currentSlide );
 
 		// The number of past and total slides
 		let totalCount = getTotalSlides();
@@ -1864,18 +1872,20 @@ export default function( revealElement, options ) {
 		if( currentSlide ) {
 
 			let allFragments = currentSlide.querySelectorAll( '.fragment' );
+			let allBackgroundFragments = currentBackground.querySelectorAll( '.fragment' );
 
 			// If there are fragments in the current slide those should be
 			// accounted for in the progress.
-			if( allFragments.length > 0 ) {
+			if( allFragments.length > 0 || allBackgroundFragments.length > 0) {
 				let visibleFragments = currentSlide.querySelectorAll( '.fragment.visible' );
+				let visibleBackgroundFragments = currentBackground.querySelectorAll( '.fragment.visible' );
 
 				// This value represents how big a portion of the slide progress
 				// that is made up by its fragments (0-1)
 				let fragmentWeight = 0.9;
 
 				// Add fragment progress to the past slide count
-				pastCount += ( visibleFragments.length / allFragments.length ) * fragmentWeight;
+				pastCount += ( ( visibleFragments.length + visibleBackgroundFragments.length ) / ( allFragments.length + allBackgroundFragments.length ) ) * fragmentWeight;
 			}
 
 		}
@@ -1922,14 +1932,29 @@ export default function( revealElement, options ) {
 		}
 
 		if( !slide && currentSlide ) {
-			let hasFragments = currentSlide.querySelectorAll( '.fragment' ).length > 0;
+			let currentBackground = getSlideBAckground( currentSlide );
+			let hasFragments = currentSlide.querySelectorAll( '.fragment' ).length > 0 || currentBackground.querySelectorAll( '.fragment' ).length > 0;
 			if( hasFragments ) {
-				let currentFragment = currentSlide.querySelector( '.current-fragment' );
-				if( currentFragment && currentFragment.hasAttribute( 'data-fragment-index' ) ) {
+				let currentFragment = currentSlide.querySelector( '.current-fragment[data-fragment-index]' );
+				let currentBackgroundFragment = currentBackground.querySelector( '.current-fragment[data-fragment-index]' );
+				if( currentFragment ) {
 					f = parseInt( currentFragment.getAttribute( 'data-fragment-index' ), 10 );
 				}
+				else if( currentBackgroundFragment ) {
+					f = parseInt( currentBackgroundFragment.getAttribute( 'data-fragment-index' ), 10 );
+				}
 				else {
-					f = currentSlide.querySelectorAll( '.fragment.visible' ).length - 1;
+					f = -1;
+					currentSlide.querySelectorAll( '.fragment.visible[data-fragment-index]' ).forEach((e, i) => {
+						let n = parseInt( currentFragment.getAttribute( 'data-fragment-index' ), 10 );
+						f = Math.max(f, n);
+					});
+					currentBackground.querySelectorAll( '.fragment.visible[data-fragment-index]' ).forEach((e, i) => {
+						let n = parseInt( currentFragment.getAttribute( 'data-fragment-index' ), 10 );
+						f = Math.max(f, n);
+					});
+					f += currentSlide.querySelectorAll( '.fragment.visible:not([data-fragment-index])' ).length;
+					f += currentBackground.querySelectorAll( '.fragment.visible:not([data-fragment-index])' ).length;
 				}
 			}
 		}

@@ -63,8 +63,8 @@ export default class Fragments {
 
 		let currentSlide = this.Reveal.getCurrentSlide();
 		if( currentSlide && this.Reveal.getConfig().fragments ) {
-			let fragments = currentSlide.querySelectorAll( '.fragment:not(.disabled)' );
-			let hiddenFragments = currentSlide.querySelectorAll( '.fragment:not(.disabled):not(.visible)' );
+			let fragments = this.queryAllFragments( '.fragment:not(.disabled)', currentSlide );
+			let hiddenFragments = this.queryAllFragments( '.fragment:not(.disabled):not(.visible)', currentSlide );
 
 			return {
 				prev: fragments.length - hiddenFragments.length > 0,
@@ -154,14 +154,31 @@ export default class Fragments {
 			let verticalSlides = queryAll( horizontalSlide, 'section' );
 			verticalSlides.forEach( ( verticalSlide, y ) => {
 
-				this.sort( verticalSlide.querySelectorAll( '.fragment' ) );
+				this.sort( this.queryAllFragments( '.fragment', verticalSlide ) );
 
 			}, this );
 
-			if( verticalSlides.length === 0 ) this.sort( horizontalSlide.querySelectorAll( '.fragment' ) );
+			if( verticalSlides.length === 0 ) this.sort( this.queryAllFragments( '.fragment', horizontalSlide ) );
 
 		} );
 
+	}
+
+	/**
+	 * Query fragments on both slide and its background
+	 *
+	 * @param {string} [selector] The query selector string
+	 * @param {?element} [slide] The slide which the selection runs on
+	 *
+	 * @return [element]
+	 */
+	queryAllFragments( selector, slide = this.Reveal.getCurrentSlide() ) {
+		let background = this.Reveal.getSlideBackground(slide);
+
+		let fragments = queryAll( slide, selector );
+		fragments.concat( queryAll ( background, selector ) );
+
+		return fragments;
 	}
 
 	/**
@@ -184,14 +201,14 @@ export default class Fragments {
 		let currentSlide = this.Reveal.getCurrentSlide();
 		if( currentSlide && this.Reveal.getConfig().fragments ) {
 
-			fragments = fragments || this.sort( currentSlide.querySelectorAll( '.fragment' ) );
+			fragments = fragments || this.sort( this.queryAllFragment( '.fragment', currentSlide ) );
 
 			if( fragments.length ) {
 
 				let maxIndex = 0;
 
 				if( typeof index !== 'number' ) {
-					let currentFragment = this.sort( currentSlide.querySelectorAll( '.fragment.visible' ) ).pop();
+					let currentFragment = this.sort( this.queryAllFragment( '.fragment.visible', currentSlide ) ).pop();
 					if( currentFragment ) {
 						index = parseInt( currentFragment.getAttribute( 'data-fragment-index' ) || 0, 10 );
 					}
@@ -272,7 +289,7 @@ export default class Fragments {
 	 */
 	sync( slide = this.Reveal.getCurrentSlide() ) {
 
-		return this.sort( slide.querySelectorAll( '.fragment' ) );
+		return this.sort( this.queryAllFragment( '.fragment', slide ) );
 
 	}
 
@@ -292,12 +309,12 @@ export default class Fragments {
 		let currentSlide = this.Reveal.getCurrentSlide();
 		if( currentSlide && this.Reveal.getConfig().fragments ) {
 
-			let fragments = this.sort( currentSlide.querySelectorAll( '.fragment:not(.disabled)' ) );
+			let fragments = this.sort( this.queryAllFragments( '.fragment:not(.disabled)', currentSlide ) );
 			if( fragments.length ) {
 
 				// If no index is specified, find the current
 				if( typeof index !== 'number' ) {
-					let lastVisibleFragment = this.sort( currentSlide.querySelectorAll( '.fragment:not(.disabled).visible' ) ).pop();
+					let lastVisibleFragment = this.sort( this.queryAllFragments( '.fragment:not(.disabled).visible', currentSlide ) ).pop();
 
 					if( lastVisibleFragment ) {
 						index = parseInt( lastVisibleFragment.getAttribute( 'data-fragment-index' ) || 0, 10 );
