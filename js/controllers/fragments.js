@@ -176,7 +176,7 @@ export default class Fragments {
 		let background = this.Reveal.getSlideBackground(slide);
 
 		let fragments = queryAll( slide, selector );
-		fragments.concat( queryAll ( background, selector ) );
+		fragments = fragments.concat( queryAll ( background, selector ) );
 
 		return fragments;
 	}
@@ -201,14 +201,14 @@ export default class Fragments {
 		let currentSlide = this.Reveal.getCurrentSlide();
 		if( currentSlide && this.Reveal.getConfig().fragments ) {
 
-			fragments = fragments || this.sort( this.queryAllFragment( '.fragment', currentSlide ) );
+			fragments = fragments || this.sort( this.queryAllFragments( '.fragment', currentSlide ) );
 
 			if( fragments.length ) {
 
 				let maxIndex = 0;
 
 				if( typeof index !== 'number' ) {
-					let currentFragment = this.sort( this.queryAllFragment( '.fragment.visible', currentSlide ) ).pop();
+					let currentFragment = this.sort( this.queryAllFragments( '.fragment.visible', currentSlide ) ).pop();
 					if( currentFragment ) {
 						index = parseInt( currentFragment.getAttribute( 'data-fragment-index' ) || 0, 10 );
 					}
@@ -234,7 +234,13 @@ export default class Fragments {
 
 							el.classList.add( 'current-fragment' );
 							this.Reveal.slideContent.startEmbeddedContent( el );
+							if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) ) {
+								el.currentTime = 0;
+								el.play();
+							}
 						}
+						else if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) )
+							el.pause();
 
 						if( !wasVisible ) {
 							changedFragments.shown.push( el )
@@ -253,6 +259,10 @@ export default class Fragments {
 
 						if( wasVisible ) {
 							this.Reveal.slideContent.stopEmbeddedContent( el );
+							if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) ) {
+								el.pause();
+								el.currentTime = 0;
+							}
 							changedFragments.hidden.push( el );
 							this.Reveal.dispatchEvent({
 								target: el,
@@ -289,7 +299,7 @@ export default class Fragments {
 	 */
 	sync( slide = this.Reveal.getCurrentSlide() ) {
 
-		return this.sort( this.queryAllFragment( '.fragment', slide ) );
+		return this.sort( this.queryAllFragments( '.fragment', slide ) );
 
 	}
 

@@ -1596,7 +1596,7 @@ export default function( revealElement, options ) {
 							fragment.classList.add( 'visible' );
 							fragment.classList.remove( 'current-fragment' );
 						} );
-						Util.queryAll( getSlideBackground( element ), '.fragment' ).forEach( fragment => {
+						Util.queryAll( Reveal.getSlideBackground( element ), '.fragment' ).forEach( fragment => {
 							fragment.classList.add( 'visible' );
 							fragment.classList.remove( 'current-fragment' );
 						} );
@@ -1611,7 +1611,7 @@ export default function( revealElement, options ) {
 						Util.queryAll( element, '.fragment.visible' ).forEach( fragment => {
 							fragment.classList.remove( 'visible', 'current-fragment' );
 						} );
-						Util.queryAll( getSlideBackground( element ), '.fragment.visible' ).forEach( fragment => {
+						Util.queryAll( Reveal.getSlideBackground( element ), '.fragment.visible' ).forEach( fragment => {
 							fragment.classList.remove( 'visible', 'current-fragment' );
 						} );
 					}
@@ -1863,7 +1863,7 @@ export default function( revealElement, options ) {
 	 * @return {number}
 	 */
 	function getProgress() {
-		let currentBackground = getSlideBackground( currentSlide );
+		let currentBackground = Reveal.getSlideBackground( currentSlide );
 
 		// The number of past and total slides
 		let totalCount = getTotalSlides();
@@ -1932,7 +1932,7 @@ export default function( revealElement, options ) {
 		}
 
 		if( !slide && currentSlide ) {
-			let currentBackground = getSlideBackground( currentSlide );
+			let currentBackground = Reveal.getSlideBackground( currentSlide );
 			let hasFragments = currentSlide.querySelectorAll( '.fragment' ).length > 0 || currentBackground.querySelectorAll( '.fragment' ).length > 0;
 			if( hasFragments ) {
 				let currentFragment = currentSlide.querySelector( '.current-fragment[data-fragment-index]' );
@@ -1946,11 +1946,11 @@ export default function( revealElement, options ) {
 				else {
 					f = -1;
 					currentSlide.querySelectorAll( '.fragment.visible[data-fragment-index]' ).forEach((e, i) => {
-						let n = parseInt( currentFragment.getAttribute( 'data-fragment-index' ), 10 );
+						let n = parseInt( e.getAttribute( 'data-fragment-index' ), 10 );
 						f = Math.max(f, n);
 					});
 					currentBackground.querySelectorAll( '.fragment.visible[data-fragment-index]' ).forEach((e, i) => {
-						let n = parseInt( currentFragment.getAttribute( 'data-fragment-index' ), 10 );
+						let n = parseInt( e.getAttribute( 'data-fragment-index' ), 10 );
 						f = Math.max(f, n);
 					});
 					f += currentSlide.querySelectorAll( '.fragment.visible:not([data-fragment-index])' ).length;

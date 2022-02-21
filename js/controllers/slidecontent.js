@@ -115,7 +115,7 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let imageClass = backgroundImageClass ? backgroundImageClass.split(',') : undefined;
+						let imageClass = backgroundImageClass ? backgroundImageClass.split(',') : undefined,
 							imageFragmentIndex = backgroundImageFragmentIndex ? backgroundImageFragmentIndex.split(',') : undefined;
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
@@ -142,8 +142,8 @@ export default class SlideContent {
 						backgroundVideoClass.split(' ').forEach( cls => {
 							video.classList.add(backgroundVideoClass);
 						});
-					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex[i].trim().length > 0 )
-							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex[i].trim() );
+					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 )
+							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex.trim() );
 
 					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
@@ -313,7 +313,7 @@ export default class SlideContent {
 
 			// HTML5 media elements
 			queryAll( element, 'video, audio' ).forEach( el => {
-				if( closest( el, '.fragment' ) && !closest( el, '.fragment.visible' ) ) {
+				if( closest( el, '.fragment' ) && !closest( el, '.fragment.visible.current-fragment' ) ) {
 					return;
 				}
 
