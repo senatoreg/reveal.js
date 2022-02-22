@@ -95,11 +95,10 @@ export default class SlideContent {
 				background.setAttribute( 'data-loaded', 'true' );
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
-					backgroundImageClass = slide.getAttribute( 'data-background-image-class' ),
-					backgroundImageFragmentIndex = slide.getAttribute( 'data-background-image-fragment-index' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoClass = slide.getAttribute( 'data-background-video-class' ),
+					backgroundVideoStyle = slide.getAttribute( 'data-background-video-style' ),
 					backgroundVideoFragmentIndex = slide.getAttribute( 'data-background-video-fragment-index' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
@@ -115,18 +114,28 @@ export default class SlideContent {
 					}
 					// URL(s)
 					else {
-						let imageClass = backgroundImageClass ? backgroundImageClass.split(',') : undefined,
-							imageFragmentIndex = backgroundImageFragmentIndex ? backgroundImageFragmentIndex.split(',') : undefined;
 						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
-							if ( imageClass && imageClass[i] )
-								imageClass[i].split(' ').forEach( ( e, i ) => {
+
+							let imageClass = slide.hasAttribute( 'data-background-image-class-' + i ) ? slide.getAttribute ( 'data-background-image-class-' + i ) : undefined;
+							let imageStyle = slide.hasAttribute( 'data-background-image-style-' + i ) ? slide.getAttribute ( 'data-background-image-style-' + i ) : undefined;
+							let imageFragmentIndex = slide.hasAttribute( 'data-background-image-fragment-index-' + i ) ? slide.getAttribute ( 'data-background-image-fragment-index-' + i ).trim() : undefined;
+
+							if ( imageStyle )
+								image.style.cssText = imageStyle;
+
+							if ( imageClass )
+								imageClass.split(' ').forEach( ( e, i ) => {
 									if ( e && e.length > 0 ) image.classList.add( e );
 								});
-							if ( imageFragmentIndex && imageFragmentIndex[i].trim().length > 0 )
-								image.setAttribute( 'data-fragment-index', imageFragmentIndex[i].trim() );
+
+							if ( imageFragmentIndex )
+								image.setAttribute( 'data-fragment-index', imageFragmentIndex );
+
 							image.classList.add( 'layer' + i );
+
 							image.src = background.trim();
+
 							if ( backgroundSize )
 								image.style.objectFit = backgroundSize;
 							return image;
@@ -138,10 +147,14 @@ export default class SlideContent {
 				// Videos
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
 					let video = document.createElement( 'video' );
+					if ( backgroundVideoStyle )
+						video.style.cssText = backgroundVideoStyle;
+
 					if ( backgroundVideoClass )
 						backgroundVideoClass.split(' ').forEach( cls => {
 							video.classList.add( cls );
 						});
+
 					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 )
 							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex.trim() );
 
