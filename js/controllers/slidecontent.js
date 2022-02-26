@@ -48,6 +48,8 @@ export default class SlideContent {
 
 		// Show the slide element
 		slide.style.display = this.Reveal.getConfig().display;
+		slide.style.placeContent = 'center stretch';
+		if (this.Reveal.getConfig().center) slide.style.alignItems = 'center';
 
 		// Media elements with data-src attributes
 		queryAll( slide, 'img[data-src], video[data-src], audio[data-src], iframe[data-src]' ).forEach( element => {

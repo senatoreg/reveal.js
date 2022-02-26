@@ -276,7 +276,7 @@ export default {
 	mobileViewDistance: 2,
 
 	// The display mode that will be used to show slides
-	display: 'block',
+	display: 'grid',
 
 	// Hide cursor if inactive
 	hideInactiveCursor: true,

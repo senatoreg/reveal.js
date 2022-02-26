@@ -862,6 +862,9 @@ export default function( revealElement, options ) {
 						dom.slides.style.top = '';
 						dom.slides.style.bottom = '';
 						dom.slides.style.right = '';
+						dom.slides.style.display = 'grid';
+						dom.slides.style.placeContent = 'center stretch';
+						if (config.center) dom.slides.style.alignItems = 'center';
 						transformSlides( { layout: '' } );
 					}
 					// Transform Scaling
@@ -874,6 +877,9 @@ export default function( revealElement, options ) {
 						dom.slides.style.top = '50%';
 						dom.slides.style.bottom = 'auto';
 						dom.slides.style.right = 'auto';
+						dom.slides.style.display = 'grid';
+						dom.slides.style.placeContent = 'center stretch';
+						if (config.center) dom.slides.style.alignItems = 'center';
 						transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
 					}
 				}
@@ -889,21 +895,18 @@ export default function( revealElement, options ) {
 						continue;
 					}
 
-					if( config.center || slide.classList.contains( 'center' ) ) {
+					if( !config.center && slide.classList.contains( 'center' ) ) {
 						// Vertical stacks are not centred since their section
 						// children will be
 						if( slide.classList.contains( 'stack' ) ) {
 							slide.style.top = 0;
 						}
 						else {
-							slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';
-						}
-						if( slide.hasAttribute( 'data-fullscreen' ) ) {
-							slide.style.transform = 'scale(' + fullScale + ')';
+							slide.style.alignSelf = 'center';
 						}
 					}
-					else {
-						slide.style.top = '';
+					if( slide.hasAttribute( 'data-fullscreen' ) ) {
+						slide.style.transform = 'scale(' + fullScale + ')';
 					}
 
 				}
@@ -1578,6 +1581,9 @@ export default function( revealElement, options ) {
 				// If this element contains vertical slides
 				if( element.querySelector( 'section' ) ) {
 					element.classList.add( 'stack' );
+					element.style.display = 'grid';
+					element.style.placeContent = 'center stretch';
+					if (config.center) element.style.alignItems = 'center';
 				}
 
 				// If we're printing static slides, all slides are "present"
