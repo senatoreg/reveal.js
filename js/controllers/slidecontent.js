@@ -174,7 +174,7 @@ export default class SlideContent {
 					// swipe gestures to navigate since they don't
 					// count as direct user actions :'(
 					if( isMobile ) {
-						video.muted = true;
+						// video.muted = true;
 						video.setAttribute( 'playsinline', '' );
 					}
 
