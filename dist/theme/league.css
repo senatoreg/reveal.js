@@ -77,6 +77,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   font-weight: inherit;
 }
 
+.reveal .slides section > hr {
+  width: 100%;
+}
+
 /*********************************************
  * HEADERS
  *********************************************/
@@ -246,6 +250,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal .code-wrapper code {
   white-space: pre;
+}
+
+.reveal hr {
+  color: inherit;
 }
 
 .reveal table {

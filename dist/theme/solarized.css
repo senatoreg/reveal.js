@@ -72,6 +72,10 @@ html * {
   font-weight: inherit;
 }
 
+.reveal .slides section > hr {
+  width: 100%;
+}
+
 /*********************************************
  * HEADERS
  *********************************************/
@@ -241,6 +245,10 @@ html * {
 
 .reveal .code-wrapper code {
   white-space: pre;
+}
+
+.reveal hr {
+  color: inherit;
 }
 
 .reveal table {
