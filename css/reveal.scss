@@ -177,6 +177,10 @@ html.reveal-full-page {
 	}
 }
 
+.reveal .slides section .fragment.highlight,
+.reveal .slides section .fragment.highlight-current,
+.reveal .slides section .fragment.highlight-low,
+.reveal .slides section .fragment.highlight-current-low,
 .reveal .slides section .fragment.highlight-red,
 .reveal .slides section .fragment.highlight-current-red,
 .reveal .slides section .fragment.highlight-green,
@@ -186,8 +190,15 @@ html.reveal-full-page {
 	opacity: 1;
 	visibility: inherit;
 }
+	.reveal .slides section .fragment.highlight.visible {
+		color: var(--r-selection-background-color);
+	}
+	.reveal .slides section .fragment.highlight-low.visible {
+		color: var(--r-selection-background-color);
+		filter: hue-rotate(180deg);
+	}
 	.reveal .slides section .fragment.highlight-red.visible {
-		color: #ff2c2d
+		color: #ff2c2d;
 	}
 	.reveal .slides section .fragment.highlight-green.visible {
 		color: #17ff2e;
@@ -196,8 +207,15 @@ html.reveal-full-page {
 		color: #1b91ff;
 	}
 
+.reveal .slides section .fragment.highlight-current.current-fragment {
+	color: var(--r-selection-background-color);
+}
+.reveal .slides section .fragment.highlight-current-low.current-fragment {
+	color: var(--r-selection-background-color);
+	filter: hue-rotate(180deg);
+}
 .reveal .slides section .fragment.highlight-current-red.current-fragment {
-	color: #ff2c2d
+	color: #ff2c2d;
 }
 .reveal .slides section .fragment.highlight-current-green.current-fragment {
 	color: #17ff2e;
