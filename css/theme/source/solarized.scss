@@ -56,7 +56,7 @@ $selectionBackgroundColor: $magenta;
 // 	@include radial-gradient( rgba($base3,1), rgba(lighten($base3, 20%),1) );
 // }
 
-
+@include dark-bg-text-color($base2);
 
 // Theme template ------------------------------
 @import "../template/theme";
