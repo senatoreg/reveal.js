@@ -1,0 +1,52 @@
+/**
+ * Space Cadet theme for reveal.js.
+ * Author: Giovanni Senatore
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(./fonts/league-gothic/league-gothic.css);
+//@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+// CSS HEX
+// link
+$imperial-red: #e63946ff;
+$honeydew: #f1faeeff;
+$powder-blue: #a8dadcff;
+$celadon-blue: #457b9dff;
+$prussian-blue: #1d3557ff;
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Lato', sans-serif;
+$codeFont: 'Ubuntu Mono', monospace;
+$mainColor: $celadon-blue;
+$headingColor: $prussian-blue;
+$headingTextShadow: none;
+$backgroundColor: $honeydew;
+$linkColor: $powder-blue;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $imperial-red;
+
+// Change text colors against light slide backgrounds
+@include dark-bg-text-color($honeydew);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
