@@ -3,7 +3,7 @@
  * Author: Giovanni Senatore
  */
 @import url(./fonts/league-gothic/league-gothic.css);
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 /**
  * Solarized colors by Ethan Schoonover
@@ -26,7 +26,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  *********************************************/
 :root {
   --r-background-color: #181a25ff;
-  --r-main-font: PT Sans, sans-serif;
+  --r-main-font: Lato, sans-serif;
   --r-main-font-size: 40px;
   --r-main-color: #25d0bcff;
   --r-block-margin: 20px;

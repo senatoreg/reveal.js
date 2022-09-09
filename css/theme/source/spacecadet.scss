@@ -13,7 +13,8 @@
 
 // Include theme-specific fonts
 @import url(./fonts/league-gothic/league-gothic.css);
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /**
@@ -46,7 +47,7 @@ $canary: #fffd82;
 $lightSalmon: #ff9b71;
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'PT Sans', sans-serif;
+$mainFont: 'Lato', sans-serif;
 $codeFont: 'Ubuntu Mono', monospace;
 $mainColor: $turquoise;
 $headingColor: $cream;
