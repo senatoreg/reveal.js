@@ -37,7 +37,7 @@ $raisinBlack: #181a25ff;
 $turquoise: #25d0bcff;
 $jazzberryJam: #aa0e54ff;
 $richBlackFogra29: #101119ff;
-$cream: #ffffc2ff;
+$cream: #ffffb3ff;
 $redOrangeColorWheel: #f54900ff;
 
 $persianGreen: #1b998b;
@@ -58,8 +58,8 @@ $linkColorHover: lighten( $linkColor, 20% );
 $selectionBackgroundColor: $redOrangeColorWheel;
 
 // Change text colors against light slide backgrounds
-@include light-bg-text-color(#222);
-@include dark-bg-text-color(#eee8d5);
+@include light-bg-text-color($raisinBlack);
+@include dark-bg-text-color($cream);
 
 // Theme template ------------------------------
 @import "../template/theme";
