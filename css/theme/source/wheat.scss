@@ -1,0 +1,52 @@
+/**
+ * Space Cadet theme for reveal.js.
+ * Author: Giovanni Senatore
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(./fonts/league-gothic/league-gothic.css);
+//@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+// CSS HEX
+$rich-black-fogra-29: #04151fff;
+$rich-black: #183a37ff;
+$wheat: #efd6acff;
+$mahogany: #c44900ff;
+$dark-purple: #432534ff;
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Lato', sans-serif;
+$codeFont: 'Ubuntu Mono', monospace;
+$mainColor: $rich-black;
+$headingColor: $rich-black-fogra-29;
+$headingTextShadow: none;
+$backgroundColor: $wheat;
+$linkColor: $dark-purple;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $mahogany;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color($rich-black-fogra-29);
+@include dark-bg-text-color($wheat);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
