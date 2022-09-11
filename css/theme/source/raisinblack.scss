@@ -1,0 +1,66 @@
+/**
+ * Space Cadet theme for reveal.js.
+ * Author: Giovanni Senatore
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(./fonts/league-gothic/league-gothic.css);
+//@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+// CSS HEX
+// link
+$glaucous: #aa0e54ff;
+$ceruleanBlue: #2b59c3ff;
+$hanBlue: #4772d7ff;
+
+// Background
+$raisinBlack: #181a25ff;
+
+$turquoise: #25d0bcff;
+$jazzberryJam: #aa0e54ff;
+$richBlackFogra29: #101119ff;
+$cream: #ffffb3ff;
+$redOrangeColorWheel: #f54900ff;
+
+$persianGreen: #1b998b;
+$flickrPink: #ed217c;
+$spaceCadet: #2d3047;
+$canary: #fffd82;
+$lightSalmon: #ff9b71;
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Lato', sans-serif;
+$codeFont: 'Ubuntu Mono', monospace;
+$mainColor: $turquoise;
+$headingColor: $cream;
+$headingTextShadow: none;
+$backgroundColor: $raisinBlack;
+$linkColor: $hanBlue;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $redOrangeColorWheel;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color($raisinBlack);
+@include dark-bg-text-color($cream);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
