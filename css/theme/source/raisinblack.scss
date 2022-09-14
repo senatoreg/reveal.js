@@ -26,40 +26,26 @@ html * {
 }
 
 // CSS HEX
-// link
-$glaucous: #aa0e54ff;
-$ceruleanBlue: #2b59c3ff;
-$hanBlue: #4772d7ff;
-
-// Background
-$raisinBlack: #181a25ff;
-
+$cerulean-blue: #1655caff;
+$raisin-black: #181a25ff;
 $turquoise: #25d0bcff;
-$jazzberryJam: #aa0e54ff;
-$richBlackFogra29: #101119ff;
-$cream: #ffffb3ff;
-$redOrangeColorWheel: #f54900ff;
-
-$persianGreen: #1b998b;
-$flickrPink: #ed217c;
-$spaceCadet: #2d3047;
-$canary: #fffd82;
-$lightSalmon: #ff9b71;
+$yellow-crayola: #ffec99ff;
+$red-orange-color-wheel: #f54900ff;
 
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Lato', sans-serif;
 $codeFont: 'Ubuntu Mono', monospace;
 $mainColor: $turquoise;
-$headingColor: $cream;
+$headingColor: $yellow-crayola;
 $headingTextShadow: none;
-$backgroundColor: $raisinBlack;
-$linkColor: $hanBlue;
+$backgroundColor: $raisin-black;
+$linkColor: $cerulean-blue;
 $linkColorHover: lighten( $linkColor, 20% );
-$selectionBackgroundColor: $redOrangeColorWheel;
+$selectionBackgroundColor: $red-orange-color-wheel;
 
 // Change text colors against light slide backgrounds
-@include light-bg-text-color($raisinBlack);
-@include dark-bg-text-color($cream);
+@include light-bg-text-color($raisin-black);
+@include dark-bg-text-color($yellow-crayola);
 
 // Theme template ------------------------------
 @import "../template/theme";

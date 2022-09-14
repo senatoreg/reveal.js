@@ -18,7 +18,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
-  color: #ffffb3ff;
+  color: #ffec99ff;
 }
 
 /*********************************************
@@ -32,7 +32,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
   --r-heading-font: League Gothic, Impact, sans-serif;
-  --r-heading-color: #ffffb3ff;
+  --r-heading-color: #ffec99ff;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
@@ -44,9 +44,9 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-heading3-size: 1.55em;
   --r-heading4-size: 1em;
   --r-code-font: Ubuntu Mono, monospace;
-  --r-link-color: #4772d7ff;
-  --r-link-color-dark: #254eac;
-  --r-link-color-hover: #9bb2e9;
+  --r-link-color: #1655caff;
+  --r-link-color-dark: #0e3885;
+  --r-link-color-hover: #598ded;
   --r-selection-background-color: #f54900ff;
   --r-selection-color: #fff;
 }
