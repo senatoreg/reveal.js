@@ -29,14 +29,14 @@ html * {
 $cerulean-blue: #1655caff;
 $raisin-black: #202332ff;
 $turquoise: #25d0bcff;
-$yellow-crayola: #ffe570ff;
+$medium-champagne: #fff0adff;
 $red-orange-color-wheel: #f54900ff;
 
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Lato', sans-serif;
 $codeFont: 'Ubuntu Mono', monospace;
 $mainColor: $turquoise;
-$headingColor: $yellow-crayola;
+$headingColor: $medium-champagne;
 $headingTextShadow: none;
 $backgroundColor: $raisin-black;
 $linkColor: $cerulean-blue;
@@ -45,7 +45,7 @@ $selectionBackgroundColor: $red-orange-color-wheel;
 
 // Change text colors against light slide backgrounds
 @include light-bg-text-color($raisin-black);
-@include dark-bg-text-color($yellow-crayola);
+@include dark-bg-text-color($medium-champagne);
 
 // Theme template ------------------------------
 @import "../template/theme";
