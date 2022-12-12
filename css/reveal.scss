@@ -730,6 +730,7 @@ $controlsArrowAngleActive: 36deg;
 .reveal.center .slides,
 .reveal.center .slides section {
 	min-height: 0 !important;
+	max-height: 100% !important;
 }
 
 /* Don't allow interaction with invisible slides */
