@@ -224,6 +224,11 @@
 	font-weight: bold;
 }
 
+
+.reveal table thead tr:not(:last-child) th:empty {
+	border-bottom: none;
+}
+
 .reveal table th,
 .reveal table td {
 	text-align: left;

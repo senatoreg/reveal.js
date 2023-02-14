@@ -265,6 +265,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   font-weight: bold;
 }
 
+.reveal table thead tr:not(:last-child) th:empty {
+  border-bottom: none;
+}
+
 .reveal table th,
 .reveal table td {
   text-align: left;
