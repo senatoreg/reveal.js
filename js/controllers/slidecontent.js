@@ -148,6 +148,7 @@ export default class SlideContent {
 				}
 				// Videos
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
+					backgroundVideo.split(';').forEach((vd, idx) => {
 					let video = document.createElement( 'video' );
 					if ( backgroundVideoStyle )
 						video.style.cssText = backgroundVideoStyle;
@@ -157,8 +158,10 @@ export default class SlideContent {
 							video.classList.add( cls );
 						});
 
-					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 )
-							video.setAttribute( 'data-fragment-index', backgroundVideoFragmentIndex.trim() );
+					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 ) {
+							let videoFragmentIndex = backgroundVideoFragmentIndex.trim().split(';');
+							video.setAttribute( 'data-fragment-index', videoFragmentIndex[idx] || '0' );
+					}
 
 					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
@@ -179,7 +182,7 @@ export default class SlideContent {
 					}
 
 					// Support comma separated lists of video sources
-					backgroundVideo.split( ',' ).forEach( source => {
+					vd.split( ',' ).forEach( source => {
 						let type = getMimeTypeFromFile( source );
 						if( type ) {
 							video.innerHTML += `<source src="${source}" type="${type}">`;
@@ -206,6 +209,7 @@ export default class SlideContent {
 						v.classList.remove('playing');
 					});
 					backgroundContent.appendChild( video );
+					});
 				}
 				// Iframes
 				else if( backgroundIframe && options.excludeIframes !== true ) {
