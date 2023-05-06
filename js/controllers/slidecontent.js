@@ -1,4 +1,4 @@
-import { extend, queryAll, closest, getMimeTypeFromFile } from '../utils/util.js'
+import { extend, queryAll, closest, getMimeTypeFromFile, encodeRFC3986URI } from '../utils/util.js'
 import { isMobile } from '../utils/device.js'
 
 import fitty from 'fitty';
