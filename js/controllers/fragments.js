@@ -1,4 +1,4 @@
-import { extend, queryAll } from '../utils/util.js'
+import { extend, queryAll } from '../utils/util.js';
 
 /**
  * Handles sorting and navigation of slide fragments.
@@ -224,7 +224,7 @@ export default class Fragments {
 
 					// Visible fragments
 					if( i <= index ) {
-						let wasVisible = el.classList.contains( 'visible' )
+						let wasVisible = el.classList.contains( 'visible' );
 						el.classList.add( 'visible' );
 						el.classList.remove( 'current-fragment' );
 
@@ -236,14 +236,21 @@ export default class Fragments {
 							this.Reveal.slideContent.startEmbeddedContent( el );
 							if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) ) {
 								el.currentTime = 0;
+								if ( el.classList.contains( 'media-controls' ) ) {
+									this.Reveal.mediaControls.attach( el );
+								}
 								el.play();
 							}
 						}
-						else if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) )
+						else if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) ) {
 							el.pause();
+							if ( el.classList.contains( 'media-controls' ) ) {
+								this.Reveal.mediaControls.detach( el );
+							}
+						}
 
 						if( !wasVisible ) {
-							changedFragments.shown.push( el )
+							changedFragments.shown.push( el );
 							this.Reveal.dispatchEvent({
 								target: el,
 								type: 'visible',
@@ -253,7 +260,7 @@ export default class Fragments {
 					}
 					// Hidden fragments
 					else {
-						let wasVisible = el.classList.contains( 'visible' )
+						let wasVisible = el.classList.contains( 'visible' );
 						el.classList.remove( 'visible' );
 						el.classList.remove( 'current-fragment' );
 
@@ -262,6 +269,9 @@ export default class Fragments {
 							if ( ['VIDEO', 'AUDIO'].includes( el.tagName ) ) {
 								el.pause();
 								el.currentTime = 0;
+								if ( el.classList.contains( 'media-controls' ) ) {
+									this.Reveal.mediaControls.detach( el );
+								}
 							}
 							changedFragments.hidden.push( el );
 							this.Reveal.dispatchEvent({

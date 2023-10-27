@@ -347,7 +347,8 @@ export default class SlideContent {
 
 			// HTML5 media elements
 			queryAll( element, 'video, audio' ).forEach( el => {
-				if( closest( el, '.fragment' ) && !closest( el, '.fragment.visible.current-fragment' ) ) {
+				if( closest( el, '.fragment' ) &&
+				    !closest( el, '.fragment.visible.current-fragment' ) ) {
 					return;
 				}
 
@@ -432,6 +433,9 @@ export default class SlideContent {
 
 		if( isAttachedToDOM && isVisible ) {
 			event.target.currentTime = 0;
+			if ( event.target.classList.contains( 'media-controls' ) ) {
+				this.Reveal.mediaControls.attach( event.target );
+			}
 			event.target.play();
 		}
 
@@ -502,6 +506,9 @@ export default class SlideContent {
 			queryAll( element, 'video, audio' ).forEach( el => {
 				if( !el.hasAttribute( 'data-ignore' ) && typeof el.pause === 'function' ) {
 					el.setAttribute('data-paused-by-reveal', '');
+					if ( el.classList.contains( 'media-controls' ) ) {
+						this.Reveal.mediaControls.detach( el );
+					}
 					el.pause();
 				}
 			} );

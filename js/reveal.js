@@ -8,6 +8,7 @@ import Overview from './controllers/overview.js'
 import Keyboard from './controllers/keyboard.js'
 import Location from './controllers/location.js'
 import Controls from './controllers/controls.js'
+import MediaControls from './controllers/mediacontrols.js'
 import Progress from './controllers/progress.js'
 import Pointer from './controllers/pointer.js'
 import Plugins from './controllers/plugins.js'
@@ -111,6 +112,7 @@ export default function( revealElement, options ) {
 		keyboard = new Keyboard( Reveal ),
 		location = new Location( Reveal ),
 		controls = new Controls( Reveal ),
+		mediaControls = new MediaControls( Reveal ),
 		progress = new Progress( Reveal ),
 		pointer = new Pointer( Reveal ),
 		plugins = new Plugins( Reveal ),
@@ -285,6 +287,7 @@ export default function( revealElement, options ) {
 		controls.render();
 		progress.render();
 		notes.render();
+		mediaControls.render();
 
 		// Overlay graphic which is displayed during the paused mode
 		dom.pauseOverlay = Util.createSingletonNode( dom.wrapper, 'div', 'pause-overlay', config.controls ? '<button class="resume-button">Resume presentation</button>' : null );
@@ -422,7 +425,7 @@ export default function( revealElement, options ) {
 	 */
 	function configure( options ) {
 
-		const oldConfig = { ...config }
+		const oldConfig = { ...config };
 
 		// New config options may be passed when this method
 		// is invoked through the API after initialization
@@ -499,6 +502,7 @@ export default function( revealElement, options ) {
 		focus.configure( config, oldConfig );
 		pointer.configure( config, oldConfig );
 		controls.configure( config, oldConfig );
+		mediaControls.configure( config, oldConfig );
 		progress.configure( config, oldConfig );
 		keyboard.configure( config, oldConfig );
 		fragments.configure( config, oldConfig );
@@ -2856,6 +2860,7 @@ export default function( revealElement, options ) {
 		focus,
 		progress,
 		controls,
+		mediaControls,
 		location,
 		overview,
 		fragments,

@@ -613,6 +613,60 @@ $controlsArrowAngleActive: 36deg;
 	}
 
 /*********************************************
+ * MEDIA CONTROLS
+ *********************************************/
+
+#mediacontrols.mediacontrols {
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-end;
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	z-index: 2;
+	color: var(--r-link-color);
+	background: none;
+	border: none;
+	font: inherit;
+	transition: opacity 0.5s, visibility 0.5s;
+	will-change: opacity, visibility;
+
+	button {
+		cursor: pointer;
+		background: inherit;
+		border: inherit;
+		color: currentColor;
+		font-size: 0.75em;
+		opacity: 0.25;
+	}
+
+	button:hover {
+		opacity: 1;
+	}
+}
+
+#mediacontrols.mediacontrols.visible {
+	visibility: 'visible';
+	opacity: 1;
+	transition: opacity 0.5s, visibility 0.5s;
+	will-change: opacity, visibility;
+}
+
+
+.reveal.has-dark-background #mediacontrols.mediacontrols {
+	color: #fff;
+}
+.reveal.has-light-background #mediacontrols.mediacontrols {
+	color: #222;
+}
+
+
+/*********************************************
  * SLIDE NUMBER
  *********************************************/
 
