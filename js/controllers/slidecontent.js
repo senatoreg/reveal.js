@@ -148,7 +148,7 @@ export default class SlideContent {
 				}
 				// Videos
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
-					backgroundVideo.split(';').forEach((vd, idx) => {
+					backgroundVideo.trim().split(';').forEach((vd, idx) => {
 					let video = document.createElement( 'video' );
 					if ( backgroundVideoStyle )
 						video.style.cssText = backgroundVideoStyle;
