@@ -191,15 +191,14 @@ export default class Fragments {
 	 *
 	 * @return {{shown: array, hidden: array}}
 	 */
-	update( index, fragments ) {
+	update( index, fragments, slide = this.Reveal.getCurrentSlide() ) {
 
 		let changedFragments = {
 			shown: [],
 			hidden: []
 		};
 
-		let currentSlide = this.Reveal.getCurrentSlide();
-		if( currentSlide && this.Reveal.getConfig().fragments ) {
+		if( slide && this.Reveal.getConfig().fragments ) {
 
 			fragments = fragments || this.sort( this.queryAllFragments( '.fragment', currentSlide ) );
 
@@ -289,7 +288,7 @@ export default class Fragments {
 				// the current fragment index.
 				index = typeof index === 'number' ? index : -1;
 				index = Math.max( Math.min( index, maxIndex ), -1 );
-				currentSlide.setAttribute( 'data-fragment', index );
+				slide.setAttribute( 'data-fragment', index );
 
 			}
 
