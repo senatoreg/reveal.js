@@ -200,14 +200,14 @@ export default class Fragments {
 
 		if( slide && this.Reveal.getConfig().fragments ) {
 
-			fragments = fragments || this.sort( this.queryAllFragments( '.fragment', currentSlide ) );
+			fragments = fragments || this.sort( this.queryAllFragments( '.fragment', slide ) );
 
 			if( fragments.length ) {
 
 				let maxIndex = 0;
 
 				if( typeof index !== 'number' ) {
-					let currentFragment = this.sort( this.queryAllFragments( '.fragment.visible', currentSlide ) ).pop();
+					let currentFragment = this.sort( this.queryAllFragments( '.fragment.visible', slide ) ).pop();
 					if( currentFragment ) {
 						index = parseInt( currentFragment.getAttribute( 'data-fragment-index' ) || 0, 10 );
 					}
