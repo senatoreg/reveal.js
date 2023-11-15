@@ -14,25 +14,25 @@ html * {
 }
 
 section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
-  color: #202332ff;
+  color: #202332;
 }
 
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
-  color: #fff0adff;
+  color: #fff0ad;
 }
 
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --r-background-color: #202332ff;
+  --r-background-color: #202332;
   --r-main-font: Lato, sans-serif;
   --r-main-font-size: 40px;
-  --r-main-color: #25d0bcff;
+  --r-main-color: #25d0bc;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
   --r-heading-font: League Gothic, Impact, sans-serif;
-  --r-heading-color: #fff0adff;
+  --r-heading-color: #fff0ad;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
@@ -44,17 +44,17 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-heading3-size: 1.55em;
   --r-heading4-size: 1em;
   --r-code-font: Ubuntu Mono, monospace;
-  --r-link-color: #1655caff;
+  --r-link-color: #1655ca;
   --r-link-color-dark: #0e3885;
   --r-link-color-hover: #598ded;
-  --r-selection-background-color: #f54900ff;
+  --r-selection-background-color: #f54900;
   --r-selection-color: #fff;
   --r-overlay-element-bg-color: 240, 240, 240;
   --r-overlay-element-fg-color: 0, 0, 0;
 }
 
 .reveal-viewport {
-  background: #202332ff;
+  background: #202332;
   background-color: var(--r-background-color);
 }
 

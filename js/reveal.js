@@ -29,7 +29,7 @@ import {
 } from './utils/constants.js'
 
 // The reveal.js version
-export const VERSION = '5.0.0';
+export const VERSION = '5.0.1';
 
 /**
  * reveal.js
@@ -1882,7 +1882,7 @@ export default function( revealElement, options ) {
 	}
 
 	/**
-	 * Shows all fragment elements within the given contaienr.
+	 * Shows all fragment elements within the given container.
 	 */
 	function showFragmentsIn( container ) {
 
@@ -1898,7 +1898,7 @@ export default function( revealElement, options ) {
 	}
 
 	/**
-	 * Hides all fragment elements within the given contaienr.
+	 * Hides all fragment elements within the given container.
 	 */
 	function hideFragmentsIn( container ) {
 
