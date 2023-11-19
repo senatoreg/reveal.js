@@ -1511,6 +1511,12 @@ export default function( revealElement, options ) {
 
 		if( slideChanged ) {
 			dispatchSlideChanged( origin );
+			if( overview.isActive() ) {
+				dispatchEvent({
+					type: 'slidetransitionend',
+					data: { indexh, indexv, previousSlide, currentSlide }
+				});
+			}
 		}
 
 		// Handle embedded content
