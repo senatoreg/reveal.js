@@ -127,8 +127,6 @@ export default class Backgrounds {
 			backgroundPosition: slide.getAttribute( 'data-background-position' ),
 			backgroundTransition: slide.getAttribute( 'data-background-transition' ),
 			backgroundOpacity: slide.getAttribute( 'data-background-opacity' ),
-			backgroundClass: slide.getAttribute( 'data-background-class' ) ? slide.getAttribute( 'data-background-class' ).split(' ') : null,
-			backgroundStyle: slide.getAttribute( 'data-background-style' ) ? slide.getAttribute( 'data-background-style' ).split(';') : null,
 		};
 
 		const dataPreload = slide.hasAttribute( 'data-preload' );
@@ -185,18 +183,6 @@ export default class Backgrounds {
 		if( data.backgroundSize ) element.setAttribute( 'data-background-size', data.backgroundSize );
 		if( data.backgroundPosition ) contentElement.style.objectPosition = data.backgroundPosition;
 		if( data.backgroundOpacity ) contentElement.style.opacity = data.backgroundOpacity;
-		if( data.backgroundClass ) data.backgroundClass.forEach((c, i) => { contentElement.classList.add(c); });
-		if( data.backgroundStyle ) data.backgroundStyle.forEach((s, i) => {
-			if (s.length > 0) {
-				let p = s.split(':');
-				let v;
-				if (p[1]) v = p[1].split('!');
-				if (v)
-					contentElement.style.setProperty(p[0].trim(), v[0] ? v[0].trim() : v[0], v[1] ? v[1].trim() : v[1]);
-				else
-					contentElement.style.setProperty(p[0].trim(), undefined, undefined);
-			}
-		});
 
 		const contrastClass = this.getContrastClass( slide );
 

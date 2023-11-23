@@ -1,5 +1,5 @@
-import { extend, queryAll, closest, getMimeTypeFromFile, encodeRFC3986URI } from '../utils/util.js'
-import { isMobile } from '../utils/device.js'
+import { extend, queryAll, closest, getMimeTypeFromFile, encodeRFC3986URI } from '../utils/util.js';
+import { isMobile } from '../utils/device.js';
 
 import fitty from 'fitty';
 
@@ -102,12 +102,33 @@ export default class SlideContent {
 
 				let backgroundImage = slide.getAttribute( 'data-background-image' ),
 					backgroundSize = slide.getAttribute( 'data-background-size' ),
+				    backgroundClass = slide.hasAttribute( 'data-background-class' ) ? slide.getAttribute( 'data-background-class' ).split(' ') : undefined,
+				    backgroundStyle = slide.getAttribute( 'data-background-style' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
-					backgroundVideoClass = slide.getAttribute( 'data-background-video-class' ),
-					backgroundVideoStyle = slide.getAttribute( 'data-background-video-style' ),
-					backgroundVideoFragmentIndex = slide.getAttribute( 'data-background-video-fragment-index' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
 					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
+
+				let lastElement = backgroundContent;
+
+				if ( backgroundClass ) {
+					backgroundClass.forEach(( e, i ) => {
+						let div = document.createElement( 'div' );
+						div.classList.add( e );
+						div.style.height = "100%";
+						div.style.width = "100%";
+						lastElement.appendChild( div );
+						lastElement = div;
+					});
+				}
+
+				if ( backgroundStyle ) {
+					let div = document.createElement( 'div' );
+					div.style.cssText = backgroundStyle;
+					div.style.height = "100%";
+					div.style.width = "100%";
+					lastElement.appendChild( div );
+					lastElement = div;
+				}
 
 				// Images
 				if( backgroundImage ) {
@@ -116,16 +137,16 @@ export default class SlideContent {
 						let image = document.createElement( 'img' );
 						image.src = backgroundImage.trim();
 						if ( backgroundSize ) image.style.objectFit = backgroundSize;
-						backgroundContent.appendChild( image );
+						lastElement.appendChild( image );
 					}
 					// URL(s)
 					else {
-						let images = backgroundImage.split( ',' ).map( ( background, i ) => {
+						let images = backgroundImage.split( ';' ).map( ( background, i ) => {
 							let image = document.createElement( 'img' );
 
-							let imageClass = slide.hasAttribute( 'data-background-image-class-' + i ) ? slide.getAttribute ( 'data-background-image-class-' + i ) : undefined;
-							let imageStyle = slide.hasAttribute( 'data-background-image-style-' + i ) ? slide.getAttribute ( 'data-background-image-style-' + i ) : undefined;
-							let imageFragmentIndex = slide.hasAttribute( 'data-background-image-fragment-index-' + i ) ? slide.getAttribute ( 'data-background-image-fragment-index-' + i ).trim() : undefined;
+							let imageClass = slide.getAttribute ( 'data-background-image-class-' + i );
+							let imageStyle = slide.getAttribute ( 'data-background-image-style-' + i );
+							let imageFragmentIndex = slide.getAttribute ( 'data-background-image-fragment-index-' + i );
 
 							if ( imageStyle )
 								image.style.cssText = imageStyle;
@@ -147,25 +168,30 @@ export default class SlideContent {
 							return image;
 						});
 
-						images.forEach( image => { backgroundContent.appendChild( image ) });
+					    images.forEach( image => { lastElement.appendChild( image ); });
 					}
 				}
 				// Videos
 				else if ( backgroundVideo && !this.Reveal.isSpeakerNotes() ) {
 					backgroundVideo.trim().split(';').forEach((vd, idx) => {
-					let video = document.createElement( 'video' );
-					if ( backgroundVideoStyle )
-						video.style.cssText = backgroundVideoStyle;
+						let video = document.createElement( 'video' );
 
-					if ( backgroundVideoClass )
-						backgroundVideoClass.split(' ').forEach( cls => {
-							video.classList.add( cls );
-						});
+						let videoClass = slide.getAttribute ( 'data-background-video-class-' + idx );
+						let videoStyle = slide.getAttribute ( 'data-background-video-style-' + idx );
+						let videoFragmentIndex = slide.getAttribute ( 'data-background-video-fragment-index-' + idx );
 
-					if ( backgroundVideoFragmentIndex && backgroundVideoFragmentIndex.trim().length > 0 ) {
-							let videoFragmentIndex = backgroundVideoFragmentIndex.trim().split(';');
-							video.setAttribute( 'data-fragment-index', videoFragmentIndex[idx] || '0' );
-					}
+						if ( videoStyle )
+							video.style.cssText = videoStyle;
+
+						if ( videoClass )
+							videoClass.split(' ').forEach( ( e, i ) => {
+								if ( e && e.length > 0 ) video.classList.add( e );
+							});
+
+						if ( videoFragmentIndex )
+							video.setAttribute( 'data-fragment-index', videoFragmentIndex );
+
+						video.classList.add( 'layer' + idx );
 
 					if( backgroundVideoLoop ) {
 						video.setAttribute( 'loop', '' );
@@ -212,7 +238,7 @@ export default class SlideContent {
 						let v = event.target;
 						v.classList.remove('playing');
 					});
-					backgroundContent.appendChild( video );
+					lastElement.appendChild( video );
 					});
 				}
 				// Iframes
