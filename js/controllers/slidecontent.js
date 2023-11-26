@@ -116,6 +116,7 @@ export default class SlideContent {
 						div.classList.add( e );
 						div.style.height = "100%";
 						div.style.width = "100%";
+						div.style.objectPosition = "inherit";
 						lastElement.appendChild( div );
 						lastElement = div;
 					});
@@ -126,6 +127,7 @@ export default class SlideContent {
 					div.style.cssText = backgroundStyle;
 					div.style.height = "100%";
 					div.style.width = "100%";
+					div.style.objectPosition = "inherit";
 					lastElement.appendChild( div );
 					lastElement = div;
 				}
