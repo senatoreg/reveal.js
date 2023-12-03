@@ -113,7 +113,9 @@ export default class SlideContent {
 				if ( backgroundClass ) {
 					backgroundClass.forEach(( e, i ) => {
 						let div = document.createElement( 'div' );
-						div.classList.add( e );
+						e.split('.').forEach(( c, i) => {
+							div.classList.add( c );
+						});
 						div.style.height = "100%";
 						div.style.width = "100%";
 						div.style.objectPosition = "inherit";
