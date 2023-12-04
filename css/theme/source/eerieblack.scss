@@ -32,6 +32,7 @@ $verdigris: #17bebbff; // 15d0dc
 $vanilla: #fff0adff; // fff0dd
 $flame: #e4572eff;
 $rojo: #de1a1aff;
+$red-crayola: #ed254e;
 
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Lato', sans-serif;
@@ -42,7 +43,7 @@ $headingTextShadow: none;
 $backgroundColor: $eerie-black;
 $linkColor: $true-blue;
 $linkColorHover: lighten( $linkColor, 20% );
-$selectionBackgroundColor: $rojo;
+$selectionBackgroundColor: $red-crayola;
 
 // Change text colors against light slide backgrounds
 @include light-bg-text-color($eerie-black);
