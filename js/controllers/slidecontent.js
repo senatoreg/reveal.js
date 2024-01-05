@@ -219,11 +219,10 @@ export default class SlideContent {
 					vd.split( ',' ).forEach( source => {
 						let type = getMimeTypeFromFile( source );
 						if( type ) {
-							video.innerHTML += `<source src="${source}" type="${type}">`;
+							sourceElement.setAttribute( 'type', type );
 						}
-						else {
-							video.innerHTML += `<source src="${source}">`;
-						}
+
+						video.appendChild( sourceElement );
 					} );
 
 					video.addEventListener('play', function(event) {
