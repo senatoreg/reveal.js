@@ -217,7 +217,7 @@ export default class SlideContent {
 
 					// Support comma separated lists of video sources
 					vd.split( ',' ).forEach( source => {
-						const sourceElement = document.createElement( 'source' );			      
+						const sourceElement = document.createElement( 'source' );
 						sourceElement.setAttribute( 'src', source );
 
 						let type = getMimeTypeFromFile( source );
