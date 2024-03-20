@@ -14,7 +14,8 @@
 // Include theme-specific fonts
 @import url(./fonts/league-gothic/league-gothic.css);
 //@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /**
@@ -33,7 +34,7 @@ $medium-turquoise: #08d9d2ff;
 $unbleached-silk: #ebcfc1ff;
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Lato', sans-serif;
+$mainFont: 'Carlito', sans-serif;
 $codeFont: 'Ubuntu Mono', monospace;
 $mainColor: $blizzard-blue;
 $headingColor: $unbleached-silk;
